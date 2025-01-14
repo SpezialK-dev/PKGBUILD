@@ -11,7 +11,7 @@ url='https://github.com/NateBrune/fmem'
 
 
 license=('GPL2')
-depends=('make' 'gcc' 'linux-headers' 'linux')
+depends=('make' 'gcc' 'git' 'linux-headers' 'linux')
 source=("git+https://github.com/NateBrune/$pkgname.git")
 sha512sums=('SKIP')
 
@@ -29,6 +29,6 @@ build(){
 
 package(){
 	cd $pkgname
-
-	sudo sh run.sh	
+	install -Dm 700 -t "$pkgdir/lib/modules/X.Y.Z-arch1-1/updates" fmem.ko
+		
 }
