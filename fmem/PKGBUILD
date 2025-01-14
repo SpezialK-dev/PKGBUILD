@@ -4,16 +4,21 @@
 
 pkgname=fmem
 pkgver=1.6.0
+pkgrel=1
+arch=('any')
 pkgdesc='Linux Kernel Module designed to help analyze volatile memory in the linux kernel '
 url='https://github.com/NateBrune/fmem'
+
+
 license=('GPL2')
-depends=('make', 'gcc', 'linux-headers', 'linux')
-source=("git+https://github.com/NateBrun/$pkgname.git")
+depends=('make' 'gcc' 'linux-headers' 'linux')
+source=("git+https://github.com/NateBrune/$pkgname.git")
 sha512sums=('SKIP')
 
 prepare(){
 	cd $pkgname  
-	patch -Np -i Kernel_6_4.patch
+	pwd	
+	patch -Np1 -i  ../../Kernel_6_4.patch
 }
 
 
