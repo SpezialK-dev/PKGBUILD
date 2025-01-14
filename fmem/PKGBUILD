@@ -1,0 +1,29 @@
+# Maintainer spezialk
+
+# All my PKGBUILDS are on my github
+
+pkgname=fmem
+pkgver=1.6.0
+pkgdesc='Linux Kernel Module designed to help analyze volatile memory in the linux kernel '
+url='https://github.com/NateBrune/fmem'
+license=('GPL2')
+depends=('make', 'gcc', 'linux-headers', 'linux')
+source=("git+https://github.com/NateBrun/$pkgname.git")
+sha512sums=('SKIP')
+
+prepare(){
+	cd $pkgname  
+	patch -Np -i Kernel_6_4.patch
+}
+
+
+build(){
+	cd $pkgname
+	make	
+}
+
+package(){
+	cd $pkgname
+
+	sudo sh run.sh	
+}
