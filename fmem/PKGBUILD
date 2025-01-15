@@ -23,14 +23,13 @@ prepare(){
 
 build(){
 	cd $pkgname
-	make	
-	#currently the images dont get compressed since its not clear from docs why you should do it. and where to place them 
-	#zstd ./fmem.ko
+	make	 
+	zstd ./fmem.ko
 }
 
 package(){
 	_kernver=$(</usr/src/linux/version)	
 	cd $pkgname	
-	install -Dvt "$pkgdir/usr/lib/modules/$_kernver/updates" -m0644 fmem.ko
+	install -Dvt "$pkgdir/usr/lib/modules/$_kernver/updates" -m0644 fmem.ko.zst
 		
 }
