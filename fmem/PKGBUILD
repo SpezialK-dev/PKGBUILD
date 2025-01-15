@@ -9,8 +9,8 @@ arch=('x86_64')
 pkgdesc='Linux Kernel Module designed to help analyze volatile memory in the linux kernel '
 url='https://github.com/NateBrune/fmem'
 license=('GPL-2.0-only')
-depends=('linux-headers')
-makedepends=('gcc' 'make' 'git')
+depends=('linux-headers' 'linux')
+makedepends=('gcc' 'make' 'git' 'zstd')
 source=("git+https://github.com/NateBrune/$pkgname.git")
 sha512sums=('SKIP')
 
@@ -24,10 +24,13 @@ prepare(){
 build(){
 	cd $pkgname
 	make	
+	#currently the images dont get compressed since its not clear from docs why you should do it. and where to place them 
+	#zstd ./fmem.ko
 }
 
 package(){
-	cd $pkgname
-	install -D -t "$pkgdir/lib/modules/$(uname -r)/updates" fmem.ko
+	_kernver=$(</usr/src/linux/version)	
+	cd $pkgname	
+	install -Dvt "$pkgdir/usr/lib/modules/$_kernver/updates" -m0644 fmem.ko
 		
 }
