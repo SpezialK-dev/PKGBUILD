@@ -1,17 +1,16 @@
-# Maintainer spezialk
+# Maintainer: spezialk 
 
 # All my PKGBUILDS are on my github
 
 pkgname=fmem
 pkgver=1.6.0
 pkgrel=1
-arch=('any')
+arch=('x86_64')
 pkgdesc='Linux Kernel Module designed to help analyze volatile memory in the linux kernel '
 url='https://github.com/NateBrune/fmem'
-
-
-license=('GPL2')
-depends=('make' 'gcc' 'git' 'linux-headers' 'linux')
+license=('GPL-2.0-only')
+depends=('linux-headers')
+makedepends=('gcc' 'make' 'git')
 source=("git+https://github.com/NateBrune/$pkgname.git")
 sha512sums=('SKIP')
 
@@ -29,6 +28,6 @@ build(){
 
 package(){
 	cd $pkgname
-	install -Dm 700 -t "$pkgdir/lib/modules/X.Y.Z-arch1-1/updates" fmem.ko
+	install -D -t "$pkgdir/lib/modules/$(uname -r)/updates" fmem.ko
 		
 }
