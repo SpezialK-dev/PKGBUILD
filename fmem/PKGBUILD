@@ -4,7 +4,7 @@
 
 pkgname=fmem
 pkgver=1.6.0
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 pkgdesc='Linux Kernel Module designed to help analyze volatile memory in the linux kernel '
 url='https://github.com/NateBrune/fmem'
@@ -17,7 +17,7 @@ sha512sums=('SKIP')
 prepare(){
 	cd $pkgname  
 	pwd	
-	patch -Np1 -i  ../../Kernel_6_4.patch
+	patch -Np1 -i  ../../Kernel_6_15.patch
 }
 
 
