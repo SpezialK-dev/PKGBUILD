@@ -52,8 +52,8 @@ index 75e95cd..529c567 100644
 +
 +
 +
-+#endif
 +
 +module_init(dummy_init);
 +module_exit(dummy_exit);
++#endif
 
